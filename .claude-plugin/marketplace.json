@@ -1,0 +1,11 @@
+{
+  "name": "tailscale-deploy-adb",
+  "owner": { "name": "tailscale-deploy-adb contributors" },
+  "plugins": [
+    {
+      "name": "tailscale-deploy-adb",
+      "source": "./",
+      "description": "Deploy Android debug builds to a physical device over Tailscale + Wireless ADB."
+    }
+  ]
+}

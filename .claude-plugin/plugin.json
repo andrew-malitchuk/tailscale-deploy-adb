@@ -1,0 +1,6 @@
+{
+  "name": "tailscale-deploy-adb",
+  "version": "0.1.0",
+  "description": "Deploy Android debug builds to a physical device over Tailscale + Wireless ADB.",
+  "license": "Apache-2.0"
+}
