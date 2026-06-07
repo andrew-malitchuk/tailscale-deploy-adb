@@ -2,7 +2,6 @@
 
 A Claude Code skill that deploys an Android debug build to a physical device over [Tailscale](https://tailscale.com) + Wireless ADB — no USB cable, no shared Wi-Fi required.
 
----
 
 ## Motivation
 
@@ -20,7 +19,6 @@ This skill automates the entire deploy loop inside Claude Code:
 
 Instead of typing six shell commands and debugging why `adb connect` failed, you tell Claude Code "deploy debug build to my phone" and it handles everything — including diagnosing failures and pointing you to the right fix.
 
----
 
 ## What it does
 
@@ -31,7 +29,6 @@ Instead of typing six shell commands and debugging why `adb connect` failed, you
 - **Logcat tail** — streams logcat filtered by the app PID for N seconds and counts critical lines (`E/` and `FATAL EXCEPTION`)
 - **Auto-detect config** — on first run, scans `build.gradle` and `AndroidManifest.xml` to suggest your app ID and activity; saves config to `.tailscale-deploy-adb.json`
 
----
 
 ## Prerequisites
 
@@ -72,8 +69,6 @@ If your device has never been connected wirelessly from this machine:
    ```
 3. Enter the 6-digit code shown on the phone
 4. Pairing is permanent; you will not need to repeat this step
-
----
 
 ## Installation
 
@@ -121,8 +116,6 @@ chmod +x ~/.claude/skills/tailscale-deploy-adb/scripts/*.sh
 
 To update: re-run the same command (it overwrites the existing files).
 
----
-
 ## Configuration
 
 The skill reads `.tailscale-deploy-adb.json` from your Android project root (the same directory as `gradlew`). On the first run it auto-detects values from your build files and saves the config — you rarely need to create it manually.
@@ -152,8 +145,6 @@ The skill reads `.tailscale-deploy-adb.json` from your Android project root (the
 
 See [`skills/tailscale-deploy-adb/references/config-schema.md`](skills/tailscale-deploy-adb/references/config-schema.md) for the full field reference and more examples.
 
----
-
 ## Usage
 
 Run the skill by typing any of these in Claude Code (from your Android project root):
@@ -180,8 +171,6 @@ Logcat:    0 critical line(s) (E/ FATAL)
 
 **Android Studio integration**: after `adb connect` succeeds, the device appears automatically in Android Studio's device selector — both tools share the same ADB server daemon.
 
----
-
 ## Project structure
 
 ```
@@ -204,8 +193,6 @@ tailscale-deploy-adb/
 └── README.md
 ```
 
----
-
 ## Troubleshooting
 
 - **`adb connect` fails repeatedly** → see [`references/adb-troubleshoot.md`](skills/tailscale-deploy-adb/references/adb-troubleshoot.md): port mismatch, stale ADB server, phone sleeping, Wireless Debugging toggle
@@ -213,7 +200,6 @@ tailscale-deploy-adb/
 - **Gradle build fails** → the skill prints the last 50 lines of the build log; fix the compile error and retry
 - **Wrong package name** → run `adb shell pm list packages | grep <your-app>` to confirm the installed package name; update `application_id` in `.tailscale-deploy-adb.json`
 
----
 
 ## Security & privacy
 
@@ -243,8 +229,23 @@ The `.gitignore` in **this** repository already excludes `.tailscale-deploy-adb.
 
 All example values in the skill files are placeholders (`my-phone`, `com.example.myapp`, `tailnet-name.ts.net`, `100.64.1.5`). The skill contains no real hostnames, IPs, email addresses, or credentials.
 
----
 
 ## License
 
-[Apache 2.0](LICENSE)
+Apache 2.0 License
+
+```
+Copyright (c) [2026] [Andrew Malitchuk]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
